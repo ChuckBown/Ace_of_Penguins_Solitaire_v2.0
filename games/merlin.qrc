@@ -1,0 +1,10 @@
+<RCC version="1.0">
+    <qresource prefix="/images/game">
+        <file>merlin.png</file>
+        <file>merlin-b.png</file>
+        <file>merlin-c.png</file>
+    </qresource>
+    <qresource prefix="/help">
+        <file>merlin.html</file>
+    </qresource>
+</RCC>

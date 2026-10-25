@@ -1,0 +1,8 @@
+<RCC version="1.0">
+    <qresource prefix="/images/game">
+        <file>freecell.png</file>
+    </qresource>
+    <qresource prefix="/help">
+        <file>freecell.html</file>
+    </qresource>
+</RCC>

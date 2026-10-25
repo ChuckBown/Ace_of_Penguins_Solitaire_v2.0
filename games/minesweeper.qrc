@@ -1,0 +1,14 @@
+<RCC version="1.0">
+    <qresource prefix="/images/game">
+        <file>minesweeper.png</file>
+        <file>minesweeper-c12.png</file>
+        <file>minesweeper-c24.png</file>
+        <file>minesweeper-c36.png</file>
+        <file>minesweeper-c48.png</file>
+        <file>minesweeper-t.png</file>
+        <file>minesweeper-x.png</file>
+    </qresource>
+    <qresource prefix="/help">
+        <file>minesweeper.html</file>
+    </qresource>
+</RCC>

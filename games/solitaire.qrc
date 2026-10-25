@@ -1,0 +1,8 @@
+<RCC version="1.0">
+    <qresource prefix="/images/game">
+        <file>solitaire.png</file>
+    </qresource>
+    <qresource prefix="/help">
+        <file>solitaire.html</file>
+    </qresource>
+</RCC>

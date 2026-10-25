@@ -1,0 +1,10 @@
+<RCC version="1.0">
+    <qresource prefix="/images/game">
+        <file>golf.png</file>
+        <file>golf-arrow.png</file>
+        <file>golf-noarrow.png</file>
+    </qresource>
+    <qresource prefix="/help">
+        <file>golf.html</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,10 @@
+<RCC version="1.0">
+    <qresource prefix="/images/game">
+        <file>thornq.png</file>
+        <file>thornq-arrow.png</file>
+        <file>thornq-noarrow.png</file>
+    </qresource>
+    <qresource prefix="/help">
+        <file>thornq.html</file>
+    </qresource>
+</RCC>

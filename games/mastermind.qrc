@@ -1,0 +1,19 @@
+<RCC version="1.0">
+    <qresource prefix="/images/game">
+        <file>mastermind.png</file>
+        <file>mastermind-b.png</file>
+        <file>mastermind-c.png</file>
+        <file>mastermind-e.png</file>
+        <file>mastermind-eb.png</file>
+        <file>mastermind-g.png</file>
+        <file>mastermind-k.png</file>
+        <file>mastermind-o.png</file>
+        <file>mastermind-p.png</file>
+        <file>mastermind-r.png</file>
+        <file>mastermind-w.png</file>
+        <file>mastermind-y.png</file>
+    </qresource>
+    <qresource prefix="/help">
+        <file>mastermind.html</file>
+    </qresource>
+</RCC>

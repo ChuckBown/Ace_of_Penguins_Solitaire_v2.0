@@ -1,0 +1,12 @@
+<RCC version="1.0">
+    <qresource prefix="/images/game">
+        <file>taipedit.png</file>
+        <file>taipedit-bs.png</file>
+        <file>taipedit-bt.png</file>
+        <file>taipedit-bu.png</file>
+        <file>taipei-tiles.png</file>
+    </qresource>
+    <qresource prefix="/help">
+        <file>taipedit.html</file>
+    </qresource>
+</RCC>

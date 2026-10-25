@@ -49,6 +49,8 @@ ui_*.h
 *.jsc
 *.pro.user*
 CMakeLists.txt.user*
+# Python versions of the .qrc resource files, generated on Windows
+/games/*.py
 
 # ---------------------------------------------------------------------------
 # Linux executables from the top-level Makefile (no file extension)

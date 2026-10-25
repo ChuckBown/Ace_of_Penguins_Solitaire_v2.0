@@ -1,0 +1,10 @@
+<RCC version="1.0">
+    <qresource prefix="/images/game">
+        <file>pegged.png</file>
+        <file>pegged-h.png</file>
+        <file>pegged-p.png</file>
+    </qresource>
+    <qresource prefix="/help">
+        <file>pegged.html</file>
+    </qresource>
+</RCC>
