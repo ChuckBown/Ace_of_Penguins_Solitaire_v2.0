@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Ace of Penguins - Launcher
+Comment=Ace of Penguins Solitaire Game Launcher
+Exec=/home/deck/bin/penguins/ace_launcher
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Application;Game;
+X-Desktop-File-Install-Version=0.12
+Icon=/home/deck/bin/penguins/penguin.ico

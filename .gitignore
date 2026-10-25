@@ -1,0 +1,107 @@
+# Ace of Penguins 2.0 - build output for Linux and Windows
+#
+# Note: the hand-written Makefiles (top level, lib/, games/) are source
+# files and must stay tracked, so "Makefile" is intentionally not ignored.
+
+# ---------------------------------------------------------------------------
+# CMake
+# ---------------------------------------------------------------------------
+/build/
+/build-*/
+/cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+CMakeUserPresets.json
+CTestTestfile.cmake
+_deps/
+*_autogen/
+
+# ---------------------------------------------------------------------------
+# Compiled objects, libraries and debug files
+# ---------------------------------------------------------------------------
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.exp
+*.lo
+*.la
+.libs/
+.deps/
+
+# ---------------------------------------------------------------------------
+# Qt generated sources
+# ---------------------------------------------------------------------------
+qrc_*.cpp
+moc_*.cpp
+moc_*.h
+*.moc
+ui_*.h
+*.qmlc
+*.jsc
+*.pro.user*
+CMakeLists.txt.user*
+
+# ---------------------------------------------------------------------------
+# Linux executables from the top-level Makefile (no file extension)
+# ---------------------------------------------------------------------------
+/ace_launcher
+/solitaire
+/golf
+/canfield
+/spider
+/freecell
+/thornq
+/yukon
+/mastermind
+/minesweeper
+/pegged
+/merlin
+/taipei
+/taipedit
+
+# Linux executables from games/Makefile
+/games/ace_launcher
+/games/*_qt
+
+# ---------------------------------------------------------------------------
+# Autotools generated files (original 1.4 build system)
+# ---------------------------------------------------------------------------
+config.status
+config.log
+config.h
+libtool
+stamp-h1
+autom4te.cache/
+
+# ---------------------------------------------------------------------------
+# Packaging output (package_for_build.ps1)
+# ---------------------------------------------------------------------------
+/qt_port_package/
+/ace_qt_port.zip
+
+# ---------------------------------------------------------------------------
+# Saved game statistics (personal data, created at runtime)
+# ---------------------------------------------------------------------------
+GameScores.xml
+
+# ---------------------------------------------------------------------------
+# Editors and operating systems
+# ---------------------------------------------------------------------------
+.vscode/
+*.code-workspace
+*~
+*.swp
+*.swo
+*.tmp
+.DS_Store
+Thumbs.db
+desktop.ini
