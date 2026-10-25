@@ -1,0 +1,25 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/images">
+        <!-- All shared PNG resources from lib/png -->
+        <file>../png/a-k.1.png</file>
+        <file>../png/a-k.2.png</file>
+        <file>../png/back-tile.png</file>
+        <file>../png/back.png</file>
+        <file>../png/big-penguin.png</file>
+        <file>../png/jack.png</file>
+        <file>../png/king.png</file>
+        <file>../png/no-drop.25.png</file>
+        <file>../png/no-drop.50.png</file>
+        <file>../png/penguin.png</file>
+        <file>../png/queen.png</file>
+        <file>../png/splash.png</file>
+        <file>../png/suits.13.png</file>
+        <file>../png/suits.26.png</file>
+        <file>../png/suits.39.png</file>
+        <file>../png/suits.9.png</file>
+        <file>../png/xemboss.png</file>
+        <file>../png/youlose.png</file>
+        <file>../png/youwin.png</file>
+    </qresource>
+</RCC>
