@@ -1,0 +1,143 @@
+Complete notes and details regarding the new version 2.0 of the Ace of Penguins.
+Chuck Bown   8/2026
+_____________________________________________________________________________
+Building:
+
+I'll be honest here, I did not update at all the configure script or the
+Makefile.am or Makefile.in or any of those previous build tools.  I do have
+Makefile files in each of the 3 directories that I used for compiling on
+an older linux system I don't have admin rights on so I can't install any
+of the more modern dev tools.  So those Makefiles worked on an old
+Redhat system that had Qt5.
+
+For Windows and arch linux I used cmake.  The CMakeLists.txt file is
+up to date and should work correctly to build so long as you have
+the necessary things installed.
+
+This code should work fine using either Qt5 or Qt6.
+
+On windows I used VSCode with cmake installed, and just clicked the
+build button and it worked.
+
+On my steamdeck, after installing the needed packages, I did:
+cmake -B build -S . --fresh
+cmake --build build
+
+You may also have to set environment variables:
+export OPENGL_INCLUDE_DIR=/usr/lib
+export CMAKE_PREFIX_PATH=/usr/lib/cmake/QT6
+export LD_LIBRARY_PATH=/usr/lib
+
+Since every steamdeck update wipes any installed packages, I've
+created and included in the root directory "steamdeck_reinstall_ace_packages"
+which is a script that will easily reinstall all packages needed
+to compile this project.
+
+_____________________________________________________________________________
+Install:
+
+Not really configured to do actual installs in either linux or windows.
+Cmake puts the compiled programs in the build directory.
+
+For linux, just copy the game files wherever you want in your path and
+they should run fine.  I've included an ace_launcher.desktop file, but
+you may want to edit it to change to the actual path you keep all of
+the executables in.  At the moment it is designed to work on the 
+Steam Deck where the executables are in /home/deck/bin/penguins
+
+For Windows after compiling copy the executables from the build
+directory into a new directory.  Then from msys2 run windeployqt
+on that new directory to add in all of the dlls that you will
+need to actually run.  Once that is done you can move that folder
+anywhere or to any other computer you want and everything should
+run fine.
+
+_____________________________________________________________________________
+Major file changes:
+
+lib/qhelp.cpp
+    Replaces the original help.c file by creating an overlay help window
+    which shows on every game when h or F1 is pressed.  Reads in the
+    game specific html file for contents.  The last tab is the Stats
+    tab which shows number of games played and number of games won.
+
+lib/qimagelib.cpp
+    Replaces the original imagelib.c file by using Qt to load, access,
+    and manipulate loaded images.
+
+lib/qscore.cpp
+    New functionality.  Keeps track of game plays and game wins.
+    Stored in ~/GameScores.xml (linux) or <pwd>/GameScores.xml
+    (Windows)
+
+lib/qtable.cpp
+    Replaces the original table.c file.  Uses Qt to create and
+    use the game table.
+
+lib/qwin.cpp
+    Replaces the original xwin.c file.  Uses Qt to create and
+    manage the program windows and event inputs. 
+
+games/ace_launcher.cpp
+    Just a simple GUI that allows the user to start any of the
+    Ace of Penguins games.  On many systems it seems easier
+    to just have a link to a launcher than links to 12
+    separate ones.  So you don't need it to play any of
+    the games, but for me at least is nice to have them
+    all easily accessable.
+
+games/canfield.html
+    Not sure if this file was ever created or not, but it didn't
+    seem to be in my 1.4 version download.  So I created it.
+
+games/qtaipedit.cpp
+    Replaces the original taipedit.c file.  The original doesn't
+    use the lib files like the rest of the games do, but rather
+    creates everything directly in X11.
+
+games/yukon.c
+    Created a version of the yukon variant of solitaire.
+    Kind of in between klondike and thornq.
+
+Note where new versions of files were created, the original ones
+were still left in place to maintain history of the project as
+well as keep them for reference should they ever be needed again.
+They just aren't compiled anymore.
+
+_____________________________________________________________________________
+Gameplay changes:
+
+- Global
+    - added persistant score keeping displayed on the Help window Stats tab.
+    - mouse buttons 4 and 5 which are typically the forward and back buttons
+      now have functionality.  The forward button will reset the game and
+      the back button will undo the last move.  This helps players
+      be able to continue to play without needing to use the keyboard.
+
+- Canfield
+    - added new feature where the 1 key will toggle 1 card draws from
+      the deck and the 3 key will toggle 3 card draws (default) from
+      the deck.
+
+- Solitaire
+    - added new feature where the 1 key will toggle 1 card draws (default)
+      from the deck and the 3 key will toggle 3 card draws from
+      the deck.
+    - added new v key which will toggle vegas mode gameplay on/off.
+      This allows the user to play vegas mode without needing to use
+      command line arguments
+    - vegas mode now
+        - disables the undo feature
+        - has increased payout per card from $5 to $10
+        - bottom left stats include deck turns left and total
+          hands played
+
+- Taipei
+    - The l key opens a file load dialog to open a previously created
+      custom taipei layout
+
+- Taipedit
+    - The l key opens a file load dialog to open a previously created
+      custom taipei layout
+    - The s key opens a file save dialog to save a custom taipei layout
+

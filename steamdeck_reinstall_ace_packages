@@ -1,0 +1,24 @@
+#/usr/bin/bash
+
+# reinstall the libs I need for qt6 ace of penguins compile
+
+sudo steamos-readonly disable
+sudo pacman-key --init
+sudo pacman-key --populate archlinux
+sudo pacman-key --populate holo
+
+sudo pacman -S gcc
+sudo pacman -S make
+sudo pacman -S glibc
+sudo pacman -S libglvnd
+sudo pacman -S mesa glu
+sudo pacman -Syu cmake base-devel
+sudo pacman -S pkgconf
+
+# I think below are already installed
+# sudo pacman -S qt6-base
+
+
+#xset +fp /home/deck/.local/share/fonts/100dpi
+
+sudo steamos-readonly enable
