@@ -260,7 +260,8 @@ protected:
                     event->button() == Qt::RightButton ? 3 :
                     event->button() == Qt::XButton1 ? 4 :
                     event->button() == Qt::XButton2 ? 5 : 0;
-        ev.shifts = 0;
+
+                    ev.shifts = 0;
         if (event->modifiers() & Qt::ShiftModifier) ev.shifts |= ES_SHIFT;
         if (event->modifiers() & Qt::ControlModifier) ev.shifts |= ES_CONTROL;
         if (event->modifiers() & Qt::AltModifier) ev.shifts |= ES_ALT;
@@ -273,6 +274,18 @@ protected:
 
     // Mouse double-click
     void mouseDoubleClickEvent(QMouseEvent *event) override {
+#if DEBUG_QWIN
+        printf("DEBUG mouseDoubleClickEvent: Qt button 0x%x -> %s\n",
+                (unsigned)event->button(),
+                event->button() == Qt::LeftButton ? "double click" : "passed through as a press");
+#endif
+        // Qt sends this instead of the second press, so pass non-left
+        // buttons through as an ordinary press
+        if (event->button() != Qt::LeftButton) {
+            mousePressEvent(event);
+            return;
+        }
+
         XWin_Event ev;
         ev.type = ev_doubleclick;
         ev.x = event->pos().x();
