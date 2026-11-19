@@ -73,6 +73,10 @@ invalidate_tile(int x, int y, int z)
 static image *cached_scaled_spritesheet = NULL;
 static int cached_spritesheet_scale = 0;
 
+// Sprite sheet for tiles of any other size (e.g. help screen images)
+static image *other_spritesheet = NULL;
+static int other_spritesheet_width = 0;
+
 void
 prescale_spritesheet()
 {
@@ -114,17 +118,21 @@ tile_synth2(image *rv)
   // Calculate scale factor based on requested tile size vs base size (39x39)
   double scale = (double)width / 39.0;
 
-  // Use the pre-scaled cached sprite sheet if available and at correct scale
-  if (cached_scaled_spritesheet && cached_spritesheet_scale == display_scale) {
+  // The pre-scaled sheet only fits tiles of the game's own size; the help
+  // screen asks for tiles at the default picture size instead
+  if (cached_scaled_spritesheet && width == 39 * cached_spritesheet_scale) {
     img = cached_scaled_spritesheet;
   } else {
-    // Fallback: load and scale on demand (shouldn't normally happen)
-    img = get_image("taipei-tiles", 0, 0, 0);
-    if (scale != 1.0) {
-      int new_width = (int)(img->width * scale);
-      int new_height = (int)(img->height * scale);
-      img = scale_image(img, new_width, new_height);
+    if (!other_spritesheet || other_spritesheet_width != width) {
+      other_spritesheet = get_image("taipei-tiles", 0, 0, 0);
+      if (scale != 1.0) {
+        int new_width = (int)(other_spritesheet->width * scale);
+        int new_height = (int)(other_spritesheet->height * scale);
+        other_spritesheet = scale_image(other_spritesheet, new_width, new_height);
+      }
+      other_spritesheet_width = width;
     }
+    img = other_spritesheet;
   }
 
   // Calculate tile layout parameters scaled from original values
@@ -143,7 +151,7 @@ tile_synth2(image *rv)
 
   // When zoomed, apply 1-pixel compensation to mask coordinates to avoid
   // interpolation artifacts at tile edges
-  int mask_offset = (display_scale > 1) ? 1 : 0;
+  int mask_offset = (width > 39) ? 1 : 0;
 
   put_image (img, bx, by, bw, bh, rv, -bx, -by, 0);
   put_mask  (img, bx + mask_offset, by + mask_offset, bw, bh, rv, -bx, -by, 0);
@@ -156,6 +164,13 @@ tile_synth(image_list *list, int type, int width, int height)
 {
   image *rv;
   int bw, bh;
+
+  // Only the game asks for tiles at its zoomed size; other callers such as
+  // the help screen ask at the card size and should get normal-size tiles
+  if (width != TILE_SX * display_scale) {
+    width = TILE_SX;
+    height = TILE_SY;
+  }
 
   for (rv = list->subimage[type]; rv; rv=rv->next)
     if (rv->width == width && rv->height == height)
